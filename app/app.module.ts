@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent }   from './app.component';
 import { EditComponent }   from './edit.component';
+import { NewTrackerComponent }   from './new.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { EditComponent }   from './edit.component';
   declarations: [
     AppComponent,
     EditComponent,
+    NewTrackerComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

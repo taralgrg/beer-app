@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var edit_component_1 = require('./edit.component');
+var new_component_1 = require('./new.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,6 +26,7 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 edit_component_1.EditComponent,
+                new_component_1.NewTrackerComponent,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -5,15 +5,16 @@ import { Tracker } from './tracker.model';
  selector: 'my-app',
  moduleId: module.id,
  template: `
+
  <h3> My Meal Tracker app </h3>
+
  <div *ngFor="let eachTracker of masterTrackerList">
    <li> {{eachTracker.name}},{{eachTracker.calories}},{{eachTracker.details}} </li>
    <button (click)="onEdit(eachTracker)">Edit</button>
-
-
  </div>
 
  <edit-app [childTracker]="selectedTracker"></edit-app>
+ <new-app  (newTrackerSender)="newTrackertoAdd($event)"> </new-app>
 
  `
 
@@ -30,5 +31,7 @@ import { Tracker } from './tracker.model';
    onEdit(xxx: Tracker){
      this.selectedTracker = xxx;
    }
-
+   newTrackertoAdd(newTaskFromTracker: Tracker) {
+     this.masterTrackerList.push(newTaskFromTracker);
+     }
  }

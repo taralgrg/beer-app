@@ -5,8 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var core_1 = require("@angular/core");
-var tracker_model_1 = require("./tracker.model");
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var tracker_model_1 = require('./tracker.model');
 var AppComponent = (function () {
     function AppComponent() {
         this.masterTrackerList = [
@@ -18,14 +21,18 @@ var AppComponent = (function () {
     AppComponent.prototype.onEdit = function (xxx) {
         this.selectedTracker = xxx;
     };
+    AppComponent.prototype.newTrackertoAdd = function (newTaskFromTracker) {
+        this.masterTrackerList.push(newTaskFromTracker);
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            moduleId: module.id,
+            template: "\n\n <h3> My Meal Tracker app </h3>\n\n <div *ngFor=\"let eachTracker of masterTrackerList\">\n   <li> {{eachTracker.name}},{{eachTracker.calories}},{{eachTracker.details}} </li>\n   <button (click)=\"onEdit(eachTracker)\">Edit</button>\n </div>\n\n <edit-app [childTracker]=\"selectedTracker\"></edit-app>\n <new-app  (newTrackerSender)=\"newTrackertoAdd($event)\"> </new-app>\n\n "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        moduleId: module.id,
-        template: "\n <h3> My Meal Tracker app </h3>\n <div *ngFor=\"let eachTracker of masterTrackerList\">\n   <li> {{eachTracker.name}},{{eachTracker.calories}},{{eachTracker.details}} </li>\n   <button (click)=\"onEdit(eachTracker)\">Edit</button>\n\n\n </div>\n\n <edit-app [childTracker]=\"selectedTracker\"></edit-app>\n\n "
-    })
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
