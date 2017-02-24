@@ -17,6 +17,7 @@ var AppComponent = (function () {
             new tracker_model_1.Tracker("Avocado", 300, "Only a small portion"),
             new tracker_model_1.Tracker("Beef", 900, "Beef and fries"),
         ];
+        this.selectedCompleteness = "lessthan500";
     }
     AppComponent.prototype.onEdit = function (xxx) {
         this.selectedTracker = xxx;
@@ -24,11 +25,15 @@ var AppComponent = (function () {
     AppComponent.prototype.newTrackertoAdd = function (newTaskFromTracker) {
         this.masterTrackerList.push(newTaskFromTracker);
     };
+    AppComponent.prototype.onChange = function (optionFromMenu) {
+        this.selectedCompleteness = optionFromMenu;
+        // console.log(this.selectedCompleteness);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             moduleId: module.id,
-            template: "\n\n <h3> My Meal Tracker app </h3>\n\n <div *ngFor=\"let eachTracker of masterTrackerList\">\n   <li> {{eachTracker.name}},{{eachTracker.calories}},{{eachTracker.details}} </li>\n   <button (click)=\"onEdit(eachTracker)\">Edit</button>\n </div>\n\n <edit-app [childTracker]=\"selectedTracker\"></edit-app>\n <new-app  (newTrackerSender)=\"newTrackertoAdd($event)\"> </new-app>\n\n "
+            template: "\n\n <h3> My Meal Tracker app </h3>\n\n <select (change)=\"onChange($event.target.value)\">\n      <option value=\"morethan500\">Food containing more than 500 calories</option>\n      <option value=\"lessthan500\" >Food containing less\n      than 500 calories</option>\n      <option value=\"All\" selected=\"selected\">All</option>\n</select>\n\n <div *ngFor=\"let eachTracker of masterTrackerList | completeness: selectedCompleteness\">\n   <li> {{eachTracker.name}},{{eachTracker.calories}},{{eachTracker.details}} </li>\n   <button (click)=\"onEdit(eachTracker)\">Edit</button>\n </div>\n\n <edit-app [childTracker]=\"selectedTracker\"></edit-app>\n <new-app  (newTrackerSender)=\"newTrackertoAdd($event)\"> </new-app>\n\n "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

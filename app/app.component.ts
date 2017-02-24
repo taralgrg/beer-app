@@ -8,7 +8,14 @@ import { Tracker } from './tracker.model';
 
  <h3> My Meal Tracker app </h3>
 
- <div *ngFor="let eachTracker of masterTrackerList">
+ <select (change)="onChange($event.target.value)">
+      <option value="morethan500">Food containing more than 500 calories</option>
+      <option value="lessthan500" >Food containing less
+      than 500 calories</option>
+      <option value="All" selected="selected">All</option>
+</select>
+
+ <div *ngFor="let eachTracker of masterTrackerList | completeness: selectedCompleteness">
    <li> {{eachTracker.name}},{{eachTracker.calories}},{{eachTracker.details}} </li>
    <button (click)="onEdit(eachTracker)">Edit</button>
  </div>
@@ -34,4 +41,11 @@ import { Tracker } from './tracker.model';
    newTrackertoAdd(newTaskFromTracker: Tracker) {
      this.masterTrackerList.push(newTaskFromTracker);
      }
- }
+
+  public selectedCompleteness: string = "lessthan500";
+  onChange(optionFromMenu) {
+    this.selectedCompleteness = optionFromMenu;
+    // console.log(this.selectedCompleteness);
+  }
+
+}
